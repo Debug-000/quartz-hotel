@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f1ec;
+  --foreground: #171c22;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    Georgia, serif;
+  --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo,
+    monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  background-image:
+    radial-gradient(circle at top left, rgba(229, 208, 179, 0.32), transparent 24%),
+    radial-gradient(circle at 80% 10%, rgba(117, 136, 166, 0.12), transparent 20%),
+    linear-gradient(180deg, #f7f4ef 0%, #f1ede6 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(216, 191, 154, 0.65);
+  color: #151a20;
+}
+
+.quartz-loader-orb {
+  animation: quartz-loader-float 12s ease-in-out infinite;
+}
+
+.quartz-loader-bar {
+  animation: quartz-loader-breathe 2.8s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.quartz-loader-sheen {
+  animation: quartz-loader-sheen 1.9s linear infinite;
+}
+
+@keyframes quartz-loader-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes quartz-loader-breathe {
+  0%,
+  100% {
+    transform: scaleX(0.6);
+    opacity: 0.88;
+  }
+
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes quartz-loader-sheen {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.92;
+  }
+
+  100% {
+    transform: translateX(360%);
+    opacity: 0;
+  }
 }

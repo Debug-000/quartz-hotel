@@ -53,7 +53,7 @@ export default function BarMenuPage() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/restaurant-menu"
-                className="group inline-flex items-center justify-center rounded-full border border-[#161b22] bg-[#161b22] px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_14px_32px_rgba(22,27,34,0.16)] transition hover:bg-[#2b3138]"
+                className="group inline-flex w-full items-center justify-center rounded-full border border-[#161b22] bg-[#161b22] px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_14px_32px_rgba(22,27,34,0.16)] transition hover:bg-[#2b3138] sm:w-auto"
               >
                 <span className="text-[#fffaf2] [text-shadow:0_1px_1px_rgba(0,0,0,0.35)]">
                   Restaurant menu
@@ -62,17 +62,17 @@ export default function BarMenuPage() {
             </div>
           </div>
 
-          <div className="grid gap-0 lg:grid-cols-[16rem_minmax(0,1fr)]">
-            <aside className="border-b border-black/8 px-6 py-6 lg:sticky lg:top-24 lg:h-fit lg:border-b-0 lg:border-r lg:px-8 lg:py-8">
+          <div className="grid gap-0 xl:grid-cols-[16rem_minmax(0,1fr)]">
+            <aside className="border-b border-black/8 px-6 py-6 xl:sticky xl:top-24 xl:h-fit xl:border-b-0 xl:border-r xl:px-8 xl:py-8">
               <p className="text-[11px] uppercase tracking-[0.28em] text-[#8a7c6d]">
                 Sections
               </p>
-              <div className="mt-4 space-y-3">
+              <div className="-mx-1 mt-4 flex gap-2 overflow-x-auto px-1 pb-1 xl:mx-0 xl:block xl:space-y-3 xl:overflow-visible xl:px-0 xl:pb-0">
                 {barMenu.map((section) => (
                   <a
                     key={section.title}
                     href={`#${section.title.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="block text-sm leading-6 text-[#4f473e] transition hover:translate-x-1 hover:text-[#161b22]"
+                    className="shrink-0 rounded-full border border-black/8 bg-white/80 px-4 py-2 text-sm leading-6 text-[#4f473e] transition hover:bg-white hover:text-[#161b22] xl:block xl:rounded-none xl:border-0 xl:bg-transparent xl:px-0 xl:py-0 xl:hover:translate-x-1"
                   >
                     {section.title}
                   </a>

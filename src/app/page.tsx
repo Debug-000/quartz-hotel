@@ -270,7 +270,7 @@ function ButtonLink({
       href={href}
       whileHover={{ y: -2, scale: 1.015 }}
       whileTap={{ scale: 0.985 }}
-      className={`group inline-flex items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] transition duration-200 hover:-translate-y-0.5 ${styles[variant]} ${className}`}
+      className={`group inline-flex w-full items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] transition duration-200 hover:-translate-y-0.5 sm:w-auto ${styles[variant]} ${className}`}
     >
       <span className={textStyles[variant]}>{label}</span>
       <span
@@ -478,12 +478,12 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="-mx-1 mt-8 flex gap-3 overflow-x-auto px-1 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
             {roomTypes.map((room, index) => (
               <button
                 key={room.name}
                 onClick={() => handleRoomChange(index)}
-                className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition-all duration-300 ${
+                className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition-all duration-300 ${
                   index === activeRoom
                     ? "border border-[#161b22] bg-[#161b22] text-[#fffaf2] shadow-[0_14px_32px_rgba(22,27,34,0.16)]"
                     : "border border-black/10 bg-white text-[#161b22] hover:-translate-y-0.5 hover:bg-[#f7f3ec]"
@@ -573,12 +573,12 @@ export default function Home() {
                 here.
               </h2>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="-mx-1 flex gap-3 overflow-x-auto px-1 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
               {stayModes.map((mode, index) => (
                 <button
                   key={mode.label}
                   onClick={() => setActiveStayMode(index)}
-                  className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition ${
+                  className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition ${
                     activeStayMode === index
                       ? "bg-[#ead9c3] text-[#161b22] shadow-[0_12px_28px_rgba(200,173,136,0.18)]"
                       : "border border-black/10 bg-white text-[#161b22] hover:-translate-y-0.5 hover:bg-[#fffaf4]"

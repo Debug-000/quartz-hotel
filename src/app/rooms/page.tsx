@@ -67,6 +67,12 @@ const roomBookingProfiles: Record<
   },
 };
 
+const heroRoomHighlights = [
+  ["Entry", "City King", "Efficient and composed"],
+  ["Expanded", "Corner Studio", "More light and lounge space"],
+  ["Premium", "Marlowe Suite", "Scale, privacy, and service"],
+] as const;
+
 export default function RoomsPage() {
   return (
     <PageFrame>
@@ -122,7 +128,7 @@ export default function RoomsPage() {
           </div>
         </div>
 
-        <div className="group relative min-h-[34rem] overflow-hidden rounded-[2.4rem] border border-black/8 bg-white shadow-[0_30px_80px_rgba(33,26,20,0.1)] lg:min-h-[43rem]">
+        <div className="group relative min-h-[28rem] overflow-hidden rounded-[2.4rem] border border-black/8 bg-white shadow-[0_30px_80px_rgba(33,26,20,0.1)] sm:min-h-[34rem] lg:min-h-[43rem]">
           <div className="pointer-events-none absolute -right-8 top-8 z-10 h-32 w-32 rounded-full bg-[#ead9c3]/55 blur-3xl" />
           <div className="pointer-events-none absolute left-10 top-10 z-10 h-24 w-24 rounded-full bg-[#f9f2e8]/45 blur-3xl" />
           <img
@@ -141,12 +147,8 @@ export default function RoomsPage() {
             </div>
           </div>
 
-          <div className="absolute inset-x-5 bottom-5 z-10 grid gap-3 sm:grid-cols-3">
-            {[
-              ["Entry", "City King", "Efficient and composed"],
-              ["Expanded", "Corner Studio", "More light and lounge space"],
-              ["Premium", "Marlowe Suite", "Scale, privacy, and service"],
-            ].map(([label, value, note], index) => (
+          <div className="absolute inset-x-5 bottom-5 z-10 hidden gap-3 sm:grid sm:grid-cols-2 xl:grid-cols-3">
+            {heroRoomHighlights.map(([label, value, note], index) => (
               <article
                 key={label}
                 className={`rounded-[1.6rem] border px-5 py-5 shadow-[0_20px_50px_rgba(17,22,27,0.12)] backdrop-blur transition duration-300 hover:-translate-y-1 ${
@@ -176,6 +178,37 @@ export default function RoomsPage() {
             ))}
           </div>
         </div>
+
+        <div className="-mt-1 flex gap-3 overflow-x-auto pb-1 sm:hidden">
+          {heroRoomHighlights.map(([label, value, note], index) => (
+            <article
+              key={label}
+              className={`min-w-[16.5rem] shrink-0 rounded-[1.6rem] border px-5 py-5 shadow-[0_20px_50px_rgba(17,22,27,0.08)] transition duration-300 ${
+                index === 0
+                  ? "border-[#161b22] bg-[#161b22] text-white"
+                  : "border-black/8 bg-white text-[#161b22]"
+              }`}
+            >
+              <p
+                className={`text-[11px] uppercase tracking-[0.24em] ${
+                  index === 0 ? "text-white/56" : "text-[#8a7c6d]"
+                }`}
+              >
+                {label}
+              </p>
+              <p className="mt-3 font-display text-[2rem] leading-none">
+                {value}
+              </p>
+              <p
+                className={`mt-3 text-sm leading-6 ${
+                  index === 0 ? "text-white/74" : "text-[#4f473e]"
+                }`}
+              >
+                {note}
+              </p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="border-y border-black/8 bg-[#f2ece3]">
@@ -194,16 +227,16 @@ export default function RoomsPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3 md:items-start">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 xl:items-start">
             {roomTypes.map((room, index) => (
               <article
                 key={room.name}
                 className={`group rounded-[1.8rem] border px-5 py-5 shadow-[0_20px_50px_rgba(31,24,18,0.05)] transition duration-300 hover:-translate-y-2 ${
                   index === 0
-                    ? "border-[#161b22] bg-[#161b22] text-white md:translate-y-8"
+                    ? "border-[#161b22] bg-[#161b22] text-white xl:translate-y-8"
                     : index === 1
                       ? "border-black/8 bg-white text-[#161b22]"
-                      : "border-[#ead9c3] bg-[#fcf8f2] text-[#161b22] md:translate-y-5"
+                      : "border-[#ead9c3] bg-[#fcf8f2] text-[#161b22] xl:translate-y-5"
                 }`}
               >
                 <div className="flex items-start justify-between gap-4">

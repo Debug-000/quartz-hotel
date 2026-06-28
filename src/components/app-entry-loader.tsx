@@ -4,25 +4,27 @@ import { useEffect, useState } from "react";
 import { QuartzLoaderScreen } from "@/components/quartz-loader-screen";
 
 const MIN_DISPLAY_MS = 1100;
-const FADE_MS = 380;
+const OPEN_MS = 900;
 
 export function AppEntryLoader() {
   const [isVisible, setIsVisible] = useState(true);
-  const [isFading, setIsFading] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
 
   useEffect(() => {
     const start = Date.now();
-    let fadeTimer: ReturnType<typeof setTimeout> | undefined;
+    let openTimer: ReturnType<typeof setTimeout> | undefined;
     let removeTimer: ReturnType<typeof setTimeout> | undefined;
+    document.body.classList.remove("quartz-page-ready");
 
     const dismiss = () => {
       const remaining = Math.max(0, MIN_DISPLAY_MS - (Date.now() - start));
 
-      fadeTimer = setTimeout(() => {
-        setIsFading(true);
+      openTimer = setTimeout(() => {
+        setIsOpening(true);
+        document.body.classList.add("quartz-page-ready");
         removeTimer = setTimeout(() => {
           setIsVisible(false);
-        }, FADE_MS);
+        }, OPEN_MS);
       }, remaining);
     };
 
@@ -34,8 +36,8 @@ export function AppEntryLoader() {
 
     return () => {
       window.removeEventListener("load", dismiss);
-      if (fadeTimer) {
-        clearTimeout(fadeTimer);
+      if (openTimer) {
+        clearTimeout(openTimer);
       }
       if (removeTimer) {
         clearTimeout(removeTimer);
@@ -49,12 +51,10 @@ export function AppEntryLoader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[120] transition-opacity duration-[380ms] ${
-        isFading ? "pointer-events-none opacity-0" : "opacity-100"
-      }`}
+      className="fixed inset-0 z-[120] pointer-events-none"
       aria-hidden="true"
     >
-      <QuartzLoaderScreen className="min-h-full" />
+      <QuartzLoaderScreen className="min-h-full" isOpening={isOpening} />
     </div>
   );
 }

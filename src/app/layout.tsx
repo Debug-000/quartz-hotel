@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AppEntryLoader } from "@/components/app-entry-loader";
-import { SiteNavbar } from "@/components/site-navbar";
+import { DesignReviewBar } from "@/components/design-review-bar";
+import { SiteChrome } from "@/components/site-chrome";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <AppEntryLoader />
-        <SiteNavbar />
+        <DesignReviewBar />
+        <SiteChrome />
         {children}
       </body>
     </html>
